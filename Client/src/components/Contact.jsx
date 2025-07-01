@@ -1,9 +1,9 @@
-import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
+import React, {useRef} from 'react';
+import {motion} from 'framer-motion';
 import emailjs from '@emailjs/browser';
 
 const textVariant = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: {opacity: 0, y: 20},
     visible: (i = 1) => ({
         opacity: 1,
         y: 0,
@@ -17,16 +17,21 @@ const textVariant = {
 
 const Contact = () => {
     const form = useRef();
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
 
     const sendEmail = (e) => {
         e.preventDefault();
 
         emailjs.sendForm(
-            'service_ccu9f8s',      // Replace with your EmailJS Service ID
-            'template_esv8rpx',     // Replace with your EmailJS Template ID
+            serviceId,
+            templateId,
             form.current,
-            'LL_4Nt0u0namPg1eu'       // Replace with your EmailJS Public Key
+            publicKey
         )
+
             .then(
                 (result) => {
                     alert('Message sent successfully!');
@@ -43,10 +48,10 @@ const Contact = () => {
         <motion.section
             id="contact"
             className="py-20 px-6 h-auto min-h-screen bg-black"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: 'easeOut' }}
+            initial={{opacity: 0, y: 50}}
+            whileInView={{opacity: 1, y: 0}}
+            viewport={{once: true}}
+            transition={{duration: 1, ease: 'easeOut'}}
         >
             <motion.h2
                 className="text-4xl font-bold mb-10 text-blue-400 text-center"
@@ -62,9 +67,9 @@ const Contact = () => {
                 {/* Contact Details */}
                 <motion.div
                     className="w-full lg:w-1/2 space-y-6"
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
+                    initial={{opacity: 0, x: -50}}
+                    whileInView={{opacity: 1, x: 0}}
+                    transition={{duration: 0.8}}
                 >
                     <div className=" border p-2 rounded-md bg-gray-500 gap-2 border-gray-600">
                         <motion.p
@@ -110,8 +115,7 @@ const Contact = () => {
                         >
                             Location: Indore, MP, India
                         </motion.p>
-                </div>
-
+                    </div>
 
 
                     {/* Contact Form */}
@@ -153,9 +157,9 @@ const Contact = () => {
                 {/* Map Embed */}
                 <motion.div
                     className="w-full lg:w-1/2 rounded-2xl overflow-hidden shadow-lg border-2 border-gray-700"
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
+                    initial={{scale: 0.9, opacity: 0}}
+                    whileInView={{scale: 1, opacity: 1}}
+                    transition={{duration: 0.8, delay: 0.6}}
                 >
                     <iframe
                         title="Indore Location"
